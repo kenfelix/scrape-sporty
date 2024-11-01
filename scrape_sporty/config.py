@@ -1,13 +1,13 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.firefox.options import Options
-from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from contextlib import contextmanager
 
 
 @contextmanager
-def firefox_driver_generator():
-    """Generator that yields a Selenium Firefox WebDriver instance."""
+def chrome_driver_generator():
+    """Generator that yields a Selenium Chrome WebDriver instance."""
     options = Options()
     options.add_argument("--headless")  # Run in headless mode
     options.add_argument("--no-sandbox")  # Required for Replit
@@ -16,11 +16,11 @@ def firefox_driver_generator():
     )  # Avoid issues with limited resources
 
     driver_service = Service(
-        GeckoDriverManager().install()
+        ChromeDriverManager().install()
     )  # Automatically downloads the GeckoDriver
 
     try:
-        driver = webdriver.Firefox(service=driver_service, options=options)
+        driver = webdriver.Chrome(service=driver_service, options=options)
         driver.maximize_window()
         yield driver
     finally:

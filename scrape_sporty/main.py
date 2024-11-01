@@ -1,5 +1,5 @@
 # Usage example
-from scrape_sporty.config import firefox_driver_generator
+from scrape_sporty.config import chrome_driver_generator
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,7 +14,7 @@ import pandas as pd
 data = []
 
 
-with firefox_driver_generator() as driver:
+with chrome_driver_generator() as driver:
     driver.get("https://www.sportybet.com/ng/virtual/")
 
     iframe = driver.find_element(By.TAG_NAME, "iframe")
