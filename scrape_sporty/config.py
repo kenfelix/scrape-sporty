@@ -4,13 +4,16 @@ from selenium.webdriver.firefox.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 from contextlib import contextmanager
 
+
 @contextmanager
 def firefox_driver_generator():
     """Generator that yields a Selenium Firefox WebDriver instance."""
     options = Options()
+    options.add_argument("--headless")  # Run in headless mode
+    options.add_argument("--no-sandbox")  # Required for Replit
     options.add_argument(
-        "--headless"
-    )  # Run in headless mode if you don't need a visible browser
+        "--disable-dev-shm-usage"
+    )  # Avoid issues with limited resources
 
     driver_service = Service(
         GeckoDriverManager().install()
