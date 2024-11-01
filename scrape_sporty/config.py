@@ -8,7 +8,9 @@ from contextlib import contextmanager
 def edge_driver_generator():
     """Generator that yields a Selenium Edge WebDriver instance."""
     options = Options()
-    options.headless = True  # Run in headless mode if you don't need a visible browser
+    options.add_argument(
+        "--headless"
+    )  # Run in headless mode if you don't need a visible browser
 
     driver_service = Service(
         EdgeChromiumDriverManager().install()
